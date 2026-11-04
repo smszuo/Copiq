@@ -1,0 +1,51 @@
+# Copy to copiq.toml and adjust. All values shown are the defaults.
+# architecture.md section 17.
+
+database_url = "sqlite:///./copiq.db"
+
+# Only used by the `copiq-server` command (the `uvicorn ...` CLI form takes
+# its own --host/--port instead). "0.0.0.0" (or a specific LAN/VPN IP) makes
+# the server reachable from other machines -- see architecture.md section
+# 31.0 for what that exposes. Can also be set via COPIQ_SERVER_HOST /
+# COPIQ_SERVER_PORT env vars.
+server_host = "127.0.0.1"
+server_port = 5080
+
+[deduplication]
+window_seconds = 5
+scope_to_client = true
+
+[ai]
+provider = "claude_cli"
+model = "haiku"                 # or "sonnet" -- see architecture.md section 8.5 revisit note
+default_target_language = "zh-CN"
+max_input_length = 16384
+timeout_seconds = 120
+max_concurrency = 2
+
+[ai.model_overrides]           # per-action override; unlisted actions use `model` above
+# diagram = "sonnet"           # inferring diagram structure may warrant a stronger model
+
+[prompts]                      # every action's prompt is replaceable -- section 18.2
+# dir = "~/.config/copiq/prompts"   # checked before the bundled prompts; unset = bundled only
+
+[prompts.versions]             # per-action active version; unlisted actions use their built-in default
+# translate = "v2-formal"      # <dir>/translate/v2-formal.txt must exist
+# explain = "v1"               # defaults to "v2" (answers entirely in
+#                              # default_target_language); "v1" keeps the
+#                              # explanation in English
+# Give a changed prompt a NEW version string rather than overwriting an
+# existing one in place -- prompt_version is stored per cached result
+# (section 18), so overwriting v1.txt silently makes old rows describe
+# the wrong prompt.
+
+[secret_detection]
+enabled = true
+block_ai_actions = true
+allow_override = true
+
+[retention]
+days = 30                       # 0 = forever
+
+[clipboard]
+max_content_length = 1048576    # 1 MiB

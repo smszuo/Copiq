@@ -1,0 +1,17 @@
+# architecture.md section 6.1, 31.0 -- tied to graphical-session.target
+# because the watcher needs DISPLAY and a live X11 connection. Started
+# under default.target it would have no display to connect to and would
+# crash-loop until login.
+[Unit]
+Description=Copiq clipboard daemon
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+WorkingDirectory=%h/.local/share/copiq
+ExecStart=%h/.local/share/copiq/.venv/bin/python -m copiq_daemon
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

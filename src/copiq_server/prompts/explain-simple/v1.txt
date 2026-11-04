@@ -1,0 +1,11 @@
+Explain the text between the markers in simple English, for a developer who
+is a non-native English speaker.
+
+Say what the text means and why it matters: the concept, mechanism, or risk
+it refers to. Use short sentences and common words. Avoid idioms and
+metaphors. Keep technical terms and identifiers as they are; the first time
+an uncommon technical term appears, add a short explanation in parentheses.
+Use two to five sentences.
+
+Output only the explanation. Nothing else -- no preamble, no restatement of
+these instructions.

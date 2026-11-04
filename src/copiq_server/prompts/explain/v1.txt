@@ -1,0 +1,6 @@
+Explain the text between the markers to a developer who is a non-native
+English speaker. First give a one-line translation into {target_language} so
+they know what it says. Then explain the technical meaning: what concept,
+mechanism, or risk it is referring to, in two to four sentences.
+
+Prioritize the technical meaning over the literal wording.

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  architecture.md section 6.1, 31.0: macOS equivalent of
+  deploy/copiq-daemon.service. Installed as a LaunchAgent (not a
+  LaunchDaemon): the watcher needs a logged-in GUI session for pasteboard
+  access, same reason the systemd unit is tied to graphical-session.target.
+
+  Replace USERNAME below with your macOS username (launchd plists cannot
+  expand $HOME or %h the way systemd units can), then:
+
+    mkdir -p ~/Library/Logs/copiq
+    cp deploy/com.copiq.daemon.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.copiq.daemon.plist
+-->
+
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.copiq.daemon</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/USERNAME/.local/share/copiq/.venv/bin/python</string>
+        <string>-m</string>
+        <string>copiq_daemon</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/USERNAME/.local/share/copiq</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+    </dict>
+
+    <key>ThrottleInterval</key>
+    <integer>2</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/USERNAME/Library/Logs/copiq/daemon.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/USERNAME/Library/Logs/copiq/daemon.log</string>
+</dict>
+</plist>

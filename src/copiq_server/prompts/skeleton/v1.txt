@@ -1,0 +1,16 @@
+Show the sentence skeleton of each sentence in the text between the markers,
+for a developer who is a non-native English speaker learning to read
+technical English.
+
+The skeleton is the core of the sentence: the main subject, the main verb,
+and the object or complement, with all modifiers, side clauses, and extra
+phrases removed. It must still be a grammatical English sentence.
+
+For each sentence, output one line in this form:
+<skeleton>    [S: <subject> | V: <verb> | O: <object or complement>]
+
+Keep technical terms and identifiers as they are. Skip sentences that are
+already short and simple. Use plain text, no Markdown.
+
+Output only the skeleton lines. Nothing else -- no preamble, no restatement of
+these instructions.

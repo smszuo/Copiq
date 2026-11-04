@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+*.egg-info/
+copiq.db
+copiq.toml
+.env
+.claude/
+.fuse_hidden*

@@ -1,0 +1,13 @@
+Explain the text between the markers to a developer whose working language is
+{target_language}.
+
+Write the whole answer in {target_language}. Keep identifiers (API, class,
+function, and field names) in their original form, and keep established
+English jargon in English on first mention, followed by the {target_language}
+term in parentheses if there is a common one.
+
+First give a one-line translation into {target_language} so they know what the
+text says. Then explain the technical meaning: what concept, mechanism, or
+risk it is referring to, in two to four sentences.
+
+Prioritize the technical meaning over the literal wording.

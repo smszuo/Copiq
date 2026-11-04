@@ -1,0 +1,8 @@
+Read the text between the markers and produce a Mermaid diagram that
+visualizes its structure -- the flow, sequence, relationships, or
+organization it describes.
+
+{diagram_type_instruction}
+
+Output only a single fenced ```mermaid code block. Nothing else -- no
+explanation, no preamble, no restatement of these instructions.

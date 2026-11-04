@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Tailwind v4's `dark:` variant defaults to the prefers-color-scheme media
+   query only. This makes it also respond to a `.dark` class on <html> (or
+   an ancestor), so the theme toggle (light/dark/system) can override the
+   system preference explicitly, while "system" mode still works by
+   setting/removing that class based on matchMedia (see lib/theme.ts). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Warm theme: a sepia light theme for long reading. Components only use
+   light-mode classes (bg-white, neutral-*), so swapping those palette
+   variables recolors the whole UI without touching any component. */
+.warm {
+  --color-white: #f8f1e3;
+  --color-neutral-50: #f2e9d8;
+  --color-neutral-100: #ebe0ca;
+  --color-neutral-200: #e0d2b6;
+  --color-neutral-300: #cfbd9c;
+  --color-neutral-400: #a8916f;
+  --color-neutral-500: #7a6546;
+  --color-neutral-600: #6b573d;
+  --color-neutral-700: #574531;
+  --color-neutral-800: #433426;
+  --color-neutral-900: #33271c;
+  --color-neutral-950: #241b13;
+
+  /* Serif text for long reading. System fonts only, so nothing to download.
+     font-mono (code) is left alone on purpose. */
+  --font-sans: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, Cambria,
+    "Noto Serif", "DejaVu Serif", serif;
+  --default-font-family: var(--font-sans);
+}

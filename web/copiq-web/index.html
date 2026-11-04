@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copiq</title>
+    <script>
+      // Applied before first paint, synchronously, to avoid a flash of the
+      // wrong theme -- React's useTheme (lib/useTheme.ts) takes over from
+      // here on the next render, using the same storage key and logic.
+      (function () {
+        try {
+          var theme = localStorage.getItem("copiq.theme") || "system";
+          var isDark =
+            theme === "dark" ||
+            (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", isDark);
+          document.documentElement.classList.toggle("warm", theme === "warm");
+        } catch (e) {
+          // private browsing / blocked storage -- default light, same as
+          // an unset theme in useTheme.
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

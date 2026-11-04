@@ -1,0 +1,7 @@
+Summarize the text between the markers in exactly one sentence of simple
+English, for a developer who is a non-native English speaker.
+
+Keep the most important point. Use common words and keep technical terms and
+identifiers as they are. Avoid idioms and metaphors.
+
+Output only that one sentence. Nothing else.

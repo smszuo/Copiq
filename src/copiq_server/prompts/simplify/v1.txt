@@ -1,0 +1,7 @@
+Rewrite the text between the markers into simpler English. Keep the same
+meaning and the same technical terms, but use shorter sentences and more
+common words. This is for a non-native English speaker learning to read
+developer English, so the goal is to make the original easier to understand,
+not to translate it.
+
+Output only the simplified English. Nothing else.

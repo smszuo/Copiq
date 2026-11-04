@@ -1,0 +1,19 @@
+# architecture.md section 31.0 -- systemd user unit, not Docker: the daemon
+# needs an X11 session regardless (see copiq-daemon.service), so
+# containerizing only the server adds a boundary through the middle of a
+# two-process system sharing one SQLite file. Install with:
+#   mkdir -p ~/.config/systemd/user
+#   cp deploy/*.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now copiq-server copiq-daemon
+[Unit]
+Description=Copiq server
+
+[Service]
+WorkingDirectory=%h/.local/share/copiq
+ExecStart=%h/.local/share/copiq/.venv/bin/uvicorn copiq_server.main:app --host 127.0.0.1 --port 5080
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

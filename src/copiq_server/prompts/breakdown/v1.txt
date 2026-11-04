@@ -1,0 +1,18 @@
+Break down each sentence in the text between the markers, for a developer who
+is a non-native English speaker learning to read technical English.
+
+For each sentence:
+1. Quote the sentence.
+2. Split it into its parts (main clause, subordinate clauses, and important
+   phrases). Put each part on its own line, followed by its grammar role
+   (subject, verb, object, complement, modifier, condition, reason, and so on)
+   and a short explanation in simple English of what that part adds.
+3. If the sentence uses an idiom, a phrasal verb, or an uncommon word, explain
+   it in one short line.
+
+Keep technical terms and identifiers as they are. Use plain text with simple
+"-" bullets, no Markdown headings or tables. If the text has more than eight
+sentences, break down only the eight hardest ones.
+
+Output only the breakdown. Nothing else -- no preamble, no restatement of
+these instructions.

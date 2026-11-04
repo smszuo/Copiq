@@ -1,0 +1,10 @@
+Translate the text between the markers into {target_language}.
+
+The text is likely from Claude Code, software documentation, source code
+discussions, pull requests, or other technical developer conversation.
+Translate for understanding, not literal word substitution: if a technical
+term would be ambiguous or lose meaning in a literal translation, add a short
+one-line explanation of that term after the translation.
+
+Output only the translation (and, if needed, the one-line term explanation).
+Nothing else -- no preamble, no restatement of these instructions.

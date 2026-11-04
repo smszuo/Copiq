@@ -1,0 +1,7 @@
+# Overrides the user's global ~/.config/uv/uv.toml, which points at an
+# unreachable mirror with a dead local proxy configured behind it. This
+# keeps `uv run` / `uv sync` working for this project without requiring
+# --no-config on every invocation.
+[[index]]
+url = "https://pypi.org/simple"
+default = true

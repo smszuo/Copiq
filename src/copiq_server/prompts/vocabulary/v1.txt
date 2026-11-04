@@ -1,0 +1,18 @@
+List the key vocabulary in the text between the markers, for a developer whose
+working language is {target_language} and who is learning to read technical
+English.
+
+Pick the words and phrases a non-native reader is most likely to miss:
+technical terms, uncommon words, phrasal verbs, and idioms. Skip common words
+and plain identifiers (code names). Pick at most twelve, hardest first.
+
+For each item, output one block in this form:
+- <word or phrase> (<part of speech>)
+  Meaning: <short explanation in simple English, as used in this text>
+  {target_language}: <translation>
+  In the text: "<the short part of the text where it appears>"
+
+Use plain text, no Markdown headings or tables.
+
+Output only the list. Nothing else -- no preamble, no restatement of these
+instructions.
