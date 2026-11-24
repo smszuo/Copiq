@@ -7,6 +7,16 @@ from typing import Protocol
 from pydantic import BaseModel
 
 
+# Shared by every provider: the bundled prompts refer to "the text between
+# the markers", so the wrapping must be identical whichever provider runs.
+PROMPT_TEMPLATE = (
+    "{instruction}\n\n"
+    "<<<TEXT\n"
+    "{content}\n"
+    "TEXT>>>\n"
+)
+
+
 class AiRequest(BaseModel):
     prompt: str
     input: str

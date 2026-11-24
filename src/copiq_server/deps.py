@@ -8,6 +8,7 @@ alone).
 """
 from __future__ import annotations
 
+import os
 from collections.abc import Generator
 from functools import lru_cache
 
@@ -45,7 +46,16 @@ def get_db() -> Generator[Session, None, None]:
 
 @lru_cache
 def get_ai_provider():
+    settings = get_settings_dep()
+    if settings.ai.provider == "openai":
+        from copiq_server.providers.openai_api import OpenAiProvider
+
+        return OpenAiProvider(
+            api_key=os.environ.get("OPENAI_API_KEY"),
+            model=settings.ai.model,
+            timeout_seconds=settings.ai.timeout_seconds,
+        )
+
     from copiq_server.providers.claude_cli import ClaudeCliProvider
 
-    settings = get_settings_dep()
     return ClaudeCliProvider(model=settings.ai.model, timeout_seconds=settings.ai.timeout_seconds)

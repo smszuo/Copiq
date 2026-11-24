@@ -16,8 +16,8 @@ window_seconds = 5
 scope_to_client = true
 
 [ai]
-provider = "claude_cli"
-model = "haiku"                 # or "sonnet" -- see architecture.md section 8.5 revisit note
+provider = "claude_cli"         # or "openai" -- reads the key from the OPENAI_API_KEY env var
+# model = "haiku"               # unset = provider default: claude_cli -> "haiku", openai -> "gpt-6-luna"
 default_target_language = "zh-CN"
 max_input_length = 16384
 timeout_seconds = 120

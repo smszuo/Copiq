@@ -13,6 +13,11 @@ then translate/explain/simplify/diagram it without leaving the keyboard.
 - The `claude` CLI, installed and logged in (`claude --version` should work).
   `ClaudeCliProvider` (architecture.md section 17.1) reuses this login --
   no separate API key is needed for AI actions.
+  Or use OpenAI instead: set `provider = "openai"` under `[ai]` in
+  `copiq.toml` and export `OPENAI_API_KEY`. The default model is
+  `gpt-6-luna`. If your `copiq.toml` sets `model` or
+  `[ai.model_overrides]`, change those to OpenAI model names too -- a
+  Claude name like "haiku" is sent to OpenAI as-is and fails.
 - Linux: X11 (for the clipboard daemon only -- section 6.1). macOS: no
   extra prerequisite -- the daemon uses AppKit via `pyobjc`, installed
   automatically as a platform-conditional dependency. The server and CLI

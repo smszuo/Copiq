@@ -1,7 +1,9 @@
 """Server configuration -- architecture.md section 17 (TOML + env overrides)."""
 from __future__ import annotations
 
-from pydantic import Field
+from typing import Literal
+
+from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict, TomlConfigSettingsSource
 
 
@@ -10,9 +12,15 @@ class DeduplicationSettings(BaseSettings):
     scope_to_client: bool = True
 
 
+# Used when [ai] model is unset, so switching provider alone is enough.
+_DEFAULT_MODELS = {"claude_cli": "haiku", "openai": "gpt-6-luna"}
+
+
 class AiSettings(BaseSettings):
-    provider: str = "claude_cli"
-    model: str = "haiku"
+    # Literal, so a typo stops the server at startup (section 17).
+    # "openai" reads its key from the OPENAI_API_KEY env var.
+    provider: Literal["claude_cli", "openai"] = "claude_cli"
+    model: str | None = None  # None = _DEFAULT_MODELS[provider]
     # Per-action override, e.g. {"diagram": "sonnet"} -- inferring the right
     # Mermaid diagram type is a more structured task than translate/explain/
     # simplify, so it may be worth a stronger model than the default. This
@@ -24,6 +32,12 @@ class AiSettings(BaseSettings):
     max_input_length: int = 16384
     timeout_seconds: int = 120
     max_concurrency: int = 2
+
+    @model_validator(mode="after")
+    def _default_model_for_provider(self) -> AiSettings:
+        if not self.model:  # None or "" (e.g. a blank COPIQ_AI__MODEL=)
+            self.model = _DEFAULT_MODELS[self.provider]
+        return self
 
 
 class PromptsSettings(BaseSettings):

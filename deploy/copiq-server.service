@@ -14,6 +14,7 @@ WorkingDirectory=%h/.local/share/copiq
 ExecStart=%h/.local/share/copiq/.venv/bin/uvicorn copiq_server.main:app --host 127.0.0.1 --port 5080
 Restart=on-failure
 RestartSec=2
+EnvironmentFile=-%h/.config/copiq.env
 
 [Install]
 WantedBy=default.target

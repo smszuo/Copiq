@@ -20,14 +20,7 @@ import os
 import signal
 from decimal import Decimal
 
-from copiq_server.providers.base import AiProviderError, AiRequest, AiResult
-
-_PROMPT_TEMPLATE = (
-    "{instruction}\n\n"
-    "<<<TEXT\n"
-    "{content}\n"
-    "TEXT>>>\n"
-)
+from copiq_server.providers.base import PROMPT_TEMPLATE, AiProviderError, AiRequest, AiResult
 
 
 class ClaudeCliProvider:  # satisfies AiProvider structurally
@@ -48,7 +41,7 @@ class ClaudeCliProvider:  # satisfies AiProvider structurally
             "--max-turns", "1",
         ]
 
-        prompt = _PROMPT_TEMPLATE.format(instruction=request.prompt, content=request.input)
+        prompt = PROMPT_TEMPLATE.format(instruction=request.prompt, content=request.input)
 
         proc = await asyncio.create_subprocess_exec(
             *cmd,
